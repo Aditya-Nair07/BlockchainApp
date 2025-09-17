@@ -4,8 +4,7 @@ import {
   FaGlobe, 
   FaChevronDown, 
   FaChevronUp,
-  FaCheck,
-  FaLanguage
+  FaCheck
 } from 'react-icons/fa';
 
 const LanguageSelector = ({ onLanguageChange }) => {

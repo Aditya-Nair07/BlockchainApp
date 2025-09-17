@@ -9,34 +9,14 @@ import {
   FaExternalLinkAlt,
   FaCalendarAlt
 } from 'react-icons/fa';
-import { verifyCertificate, generateCertificatePDF, fetchIPFSMetadata } from '../utils/blockchain';
+import { verifyCertificate, generateCertificatePDF } from '../utils/blockchain';
 import { format } from 'date-fns';
 
 const CertificateCard = ({ certificate, userAddress }) => {
   const [isVerifying, setIsVerifying] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState(certificate.isVerified);
-  const [metadata, setMetadata] = useState(null);
-  const [metadataLoading, setMetadataLoading] = useState(true);
-
-  useEffect(() => {
-    const loadMetadata = async () => {
-      if (certificate.ipfsHash) {
-        try {
-          const ipfsMetadata = await fetchIPFSMetadata(certificate.ipfsHash);
-          setMetadata(ipfsMetadata);
-        } catch (error) {
-          console.error('Failed to load metadata:', error);
-        } finally {
-          setMetadataLoading(false);
-        }
-      } else {
-        setMetadataLoading(false);
-      }
-    };
-
-    loadMetadata();
-  }, [certificate.ipfsHash]);
+  
 
   const handleVerify = async () => {
     setIsVerifying(true);

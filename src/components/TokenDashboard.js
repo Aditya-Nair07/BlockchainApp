@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { 
   FaCoins, 
@@ -24,7 +24,7 @@ const TokenDashboard = ({ userAddress, isConnected }) => {
     weeklyEarned: 0
   });
 
-  const loadTokenData = async () => {
+  const loadTokenData = useCallback(async () => {
     if (!userAddress || !isConnected) return;
     
     setLoading(true);
@@ -68,11 +68,11 @@ const TokenDashboard = ({ userAddress, isConnected }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userAddress, isConnected]);
 
   useEffect(() => {
     loadTokenData();
-  }, [userAddress, isConnected]);
+  }, [loadTokenData]);
 
   if (!isConnected) {
     return (

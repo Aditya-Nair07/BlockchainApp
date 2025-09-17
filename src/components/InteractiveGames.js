@@ -134,13 +134,13 @@ const InteractiveGames = ({ userAddress, isConnected }) => {
       setCurrentProblem(randomProblem);
       setUserAnswer('');
       setFeedback('');
-    }, []);
+    }, [problems]);
 
     useEffect(() => {
-      if (activeGame === 'math-puzzle' && !currentProblem) {
+      if (!currentProblem) {
         generateNewProblem();
       }
-    }, [activeGame, currentProblem, generateNewProblem]);
+    }, [currentProblem, generateNewProblem]);
 
     const checkAnswer = () => {
       // Input validation
@@ -260,7 +260,6 @@ const InteractiveGames = ({ userAddress, isConnected }) => {
     const [score, setScore] = useState(0);
     const [userInput, setUserInput] = useState('');
     const [feedback, setFeedback] = useState('');
-    const [showResult, setShowResult] = useState(false);
 
     // Debug: Track step changes
     useEffect(() => {
@@ -329,7 +328,6 @@ const InteractiveGames = ({ userAddress, isConnected }) => {
         
         if (isCorrect) {
           setFeedback('✅ Correct measurement!');
-          setShowResult(true);
           const newScore = score + 25;
           setScore(newScore);
           onScoreUpdate(25, 6.25);
@@ -344,7 +342,6 @@ const InteractiveGames = ({ userAddress, isConnected }) => {
             setStep(step + 1);
             setUserInput('');
             setFeedback('');
-            setShowResult(false);
           } else {
             console.log('🧪 CHEMISTRY: Experiment completed!');
             const finalScore = newScore + 50;
@@ -360,7 +357,6 @@ const InteractiveGames = ({ userAddress, isConnected }) => {
         // For action and observation steps
         console.log('Processing action/observation step');
         setFeedback('✅ Step completed!');
-        setShowResult(true);
         const newScore = score + 15;
         setScore(newScore);
         onScoreUpdate(15, 3.75);
@@ -374,7 +370,6 @@ const InteractiveGames = ({ userAddress, isConnected }) => {
             console.log('🧪 CHEMISTRY: Moving to next step:', step + 1);
             setStep(step + 1);
             setFeedback('');
-            setShowResult(false);
           } else {
             console.log('🧪 CHEMISTRY: Experiment completed!');
             const finalScore = newScore + 50;
@@ -479,7 +474,6 @@ const InteractiveGames = ({ userAddress, isConnected }) => {
                     setStep(Math.max(0, step - 1));
                     setUserInput('');
                     setFeedback('');
-                    setShowResult(false);
                   }}
                   className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-medium"
                 >
@@ -529,7 +523,6 @@ const InteractiveGames = ({ userAddress, isConnected }) => {
                 setStep(0);
                     setUserInput('');
                     setFeedback('');
-                    setShowResult(false);
                   }}
                   className={`px-3 py-1 text-sm rounded-lg font-medium transition-colors ${
                     experiment === expKey
@@ -589,13 +582,13 @@ const InteractiveGames = ({ userAddress, isConnected }) => {
       setUserAnswer('');
       setFeedback('');
       setShowSolution(false);
-    }, []);
+    }, [physicsProblems]);
 
     useEffect(() => {
-      if (activeGame === 'physics-challenge' && !currentProblem) {
+      if (!currentProblem) {
         generateNewProblem();
       }
-    }, [activeGame, currentProblem, generateNewProblem]);
+    }, [currentProblem, generateNewProblem]);
 
     const checkAnswer = () => {
       if (!userAnswer || userAnswer.trim() === '') {

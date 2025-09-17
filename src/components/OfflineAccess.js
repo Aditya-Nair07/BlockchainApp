@@ -6,7 +6,6 @@ import {
   FaDownload, 
   FaSync, 
   FaCheckCircle,
-  FaExclamationTriangle,
   FaInfoCircle,
   FaDatabase,
   FaCloud,

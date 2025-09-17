@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { 
   FaShieldAlt, 
@@ -16,7 +16,7 @@ const ProgressVerification = ({ userAddress, isConnected }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const loadMilestones = async () => {
+  const loadMilestones = useCallback(async () => {
     if (!userAddress || !isConnected) return;
     
     setLoading(true);
@@ -31,11 +31,11 @@ const ProgressVerification = ({ userAddress, isConnected }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userAddress, isConnected]);
 
   useEffect(() => {
     loadMilestones();
-  }, [userAddress, isConnected]);
+  }, [loadMilestones]);
 
   const containerVariants = {
     hidden: { opacity: 0 },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { FaCertificate, FaSpinner, FaExclamationTriangle } from 'react-icons/fa';
 import CertificateCard from './CertificateCard';
@@ -9,7 +9,7 @@ const CertificatesSection = ({ userAddress, isConnected }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const loadCertificates = async () => {
+  const loadCertificates = useCallback(async () => {
     if (!userAddress || !isConnected) return;
     
     setLoading(true);
@@ -24,11 +24,11 @@ const CertificatesSection = ({ userAddress, isConnected }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userAddress, isConnected]);
 
   useEffect(() => {
     loadCertificates();
-  }, [userAddress, isConnected]);
+  }, [loadCertificates]);
 
   const containerVariants = {
     hidden: { opacity: 0 },

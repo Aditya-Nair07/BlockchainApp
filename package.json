@@ -17,7 +17,6 @@
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
-    "rpg-leaderboard": "file:../../videoquest/VidyaQuest",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },

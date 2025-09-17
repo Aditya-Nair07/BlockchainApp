@@ -6,7 +6,7 @@ export const BLOCKCHAIN_CONFIG = {
     chainName: 'Polygon Amoy',
     rpcUrls: [
       'https://rpc-amoy.polygon.technology/',
-      'https://polygon-amoy.g.alchemy.com/v2/demo',
+      `https://polygon-amoy.g.alchemy.com/v2/${process.env.REACT_APP_ALCHEMY_API_KEY || 'demo'}`,
       'https://rpc.ankr.com/polygon_amoy'
     ],
     blockExplorerUrls: ['https://amoy.polygonscan.com/'],

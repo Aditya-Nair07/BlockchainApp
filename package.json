@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A React webpage implementing blockchain features for gamified STEM learning platform",
   "private": true,
-  "homepage": "/blockchain",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
